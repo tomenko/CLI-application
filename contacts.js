@@ -29,8 +29,8 @@ const getContactById = async contactId => {
 const removeContact = async (contactId) => {
   try {
     const contacts = await listContacts();
-    const index = contacts.find(contact => contact.id === contactId);
-    if (index === -1) throw new Error('Error: ID is incorrect');
+    const index = contacts.findIndex(contact => contact.id === contactId);
+    if (index === -1) throw new Error('Id incorrect');
     const contactsUpdate = contacts.filter(contact => contact.id !== contactId);
     const contactsList = JSON.stringify([...contactsUpdate]);
     fs.writeFile(contactsPath, contactsList);
